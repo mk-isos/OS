@@ -1,0 +1,44 @@
+프로젝트 개요
+이 프로젝트는 병렬 처리를 활용하여 정렬 알고리즘을 최적화하는 pmergesort와 mergesort 프로그램입니다. 
+pmergesort.c는 멀티스레딩을 통해 대량의 데이터를 효율적으로 정렬하고, mergesort.c는 단일 스레드로 정렬을 수행합니다.
+
+파일 설명
+pmergesort.c: 병렬 정렬 메인 소스 코드 파일입니다.
+mergesort.c: 단일 스레드 정렬 소스 코드 파일입니다.
+Makefile: 빌드 스크립트 파일입니다.
+
+요구 사항
+GCC 컴파일러
+Pthread 라이브러리
+
+컴파일 및 실행 방법
+1. 컴파일
+make
+
+또는 디버그 모드에서 컴파일하려면:
+make debug
+
+2. 실행
+pmergesort 실행:
+./pmergesort -d <data elements> -t <threads>
+
+예시 
+./pmergesort -d 1000000 -t 8
+
+mergesort 실행:
+./mergesort
+
+Makefile 설명
+CC = gcc: 컴파일러로 GCC를 사용합니다.
+CFLAGS = -Wall -O2: 모든 경고 메시지를 활성화하고 최적화 레벨 2로 설정합니다.
+LDFLAGS = -pthread: Pthread 라이브러리를 링크합니다.
+TARGETS = pmergesort mergesort: 생성할 실행 파일 이름입니다.
+SRCS = pmergesort.c mergesort.c: 모든 소스 파일입니다.
+OBJS = $(SRCS:.c=.o): 모든 오브젝트 파일입니다.
+all: $(TARGETS): 기본 타겟입니다.
+clean: 생성된 파일을 삭제합니다.
+debug: 디버그 모드로 컴파일합니다.
+
+디버그 모드
+디버그 모드로 컴파일하면 디버그 정보를 포함하며, DEBUG 매크로가 정의됩니다. 
+디버그 모드에서는 추가적인 로그 출력이 가능합니다.
